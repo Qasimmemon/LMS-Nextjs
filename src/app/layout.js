@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
+import Header from "@/component/Header/header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,8 +25,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <center className="p-2 m-2"><Link href={"/"}><button className="bg-green-500 text-white font-bold py-3 px-8 rounded-lg transition duration-400 hover:bg-white hover:text-black hover:border-green-500 hover:border-2">Home</button></Link>  
-      <Link href={"/admin"}><button className="bg-green-500 text-white font-bold py-3 px-8 rounded-lg transition duration-400 hover:bg-white hover:text-black hover:border-green-500 hover:border-2">Admin</button></Link>  
+        <center className="p-2 m-2"><Link href={"/"}><button className="bg-yellow-900 text-white font-bold py-3 px-8 rounded-lg transition duration-400 hover:bg-white hover:text-black hover:border-green-500 hover:border-2">Home</button></Link>  
+      <Link href={"/admin"}><button className="bg-yellow-900 text-white font-bold py-3 px-8 rounded-lg transition duration-400 hover:bg-white hover:text-black hover:border-green-500 hover:border-2">Admin</button></Link>  
+      <Header />
       
       </center>
       
