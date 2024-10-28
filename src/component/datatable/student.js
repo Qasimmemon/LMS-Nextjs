@@ -167,21 +167,25 @@ export default function StudentTable() {
     <div className="w-full">
       <div className="flex items-center py-4">
       <Input
-      placeholder="Filter by name..."
-      value={table.getColumn("Name")?.getFilterValue() || ""}
-      onChange={(event) =>
-        table.getColumn("Name")?.setFilterValue(event.target.value)
-      }
-      className="max-w-sm"
-    />
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() ) || ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+  placeholder="Filter by name..."
+  value={table.getColumn("Name")?.getFilterValue() || ""}
+  onChange={(event) => {
+    const value = event.target.value;
+    table.getColumn("Name")?.setFilterValue(value);
+  }}
+  className="max-w-sm"
+/>
+
+<Input
+  placeholder="Filter emails..."
+  value={table.getColumn("email")?.getFilterValue() || ""}
+  onChange={(event) => {
+    const value = event.target.value;
+    table.getColumn("email")?.setFilterValue(value);
+  }}
+  className="max-w-sm"
+/>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
