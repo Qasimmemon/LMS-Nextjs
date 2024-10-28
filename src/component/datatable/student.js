@@ -103,15 +103,16 @@ export default function StudentTable() {
       cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
     },
     {
-      accessorKey: "CNIC",
-      header: "CNIC",
-      cell: ({ row }) => <div className="text-right">{row.getValue("CNIC")}</div>,
-    },
-    {
-      accessorKey: "Contact_no",
-      header: "Contact Number",
-      cell: ({ row }) => <div className="text-right">{row.getValue("Contact_no")}</div>,
-    },
+        accessorKey: "CNIC",
+        header: () => <div className="text-left  header-with-line">CNIC</div>,
+        cell: ({ row }) => <div className="text-left">{row.getValue("CNIC")}</div>,
+      },
+      {
+        accessorKey: "Contact_no",
+        header: () => <div className="text-right header-with-line ">Contact Number</div>,
+        cell: ({ row }) => <div className="text-right ">{row.getValue("Contact_no")}</div>,
+      },
+      
     {
       id: "actions",
       header: "Actions",
