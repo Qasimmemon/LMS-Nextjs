@@ -4,6 +4,10 @@ import Link from "next/link";
 export default function Layout({ children }) {
   return (
     <div>
+     <center> <Link href={"/"}><button className="bg-yellow-900 text-white font-bold py-3 px-8 rounded-lg transition duration-400 hover:bg-white hover:text-black hover:border-green-500 hover:border-2">Home</button></Link> 
+      </center>
+
+
       <Tabs defaultValue="dashboard" className="w-full">
         <TabsList className="w-full">
           <Link href={`/admin/dashboard`}>

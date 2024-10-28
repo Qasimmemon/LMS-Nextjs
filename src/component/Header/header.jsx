@@ -1,12 +1,9 @@
 import Link from "next/link";
 
-
-
-export default function Header(){
-
-
-    return(
-        <>
+export default function Header() {
+  return (
+    <>
+    
   <nav className="bg-white border-gray-200 dark:bg-gray-900">
     <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
       <a
@@ -29,13 +26,12 @@ export default function Header(){
         >
           (555) 412-1234
         </a>
-
-        <button
+        <a
           href="#"
           className="text-sm  text-blue-600 dark:text-blue-500 hover:underline"
         >
           Login
-        </button>
+        </a>
       </div>
     </div>
   </nav>
@@ -43,48 +39,41 @@ export default function Header(){
     <div className="max-w-screen-xl px-4 py-3 mx-auto">
       <div className="flex items-center">
         <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-          <li>
-            <Link href={"/"}></Link>
-            <button
-              href="#"
-              className="text-gray-900 dark:text-white hover:underline"
-              aria-current="page"
-            >
-              Home
-            </button>
-          </li>
-       
-          <li>
-            <button
-              href="#"
-              className="text-gray-900 dark:text-white hover:underline"
-            >
-              Team
-            </button>
-          </li>
-          <li>
-            <button
-              href="#"
-              className="text-gray-900 dark:text-white hover:underline"
-            >
-              Features
-            </button>
-          </li>
-          <li>
-          <Link href={"/admin"}><button
-              href="#"
-              className="text-gray-900 dark:text-white hover:underline"
-            >
-              Admin
-            </button></Link>
-
-            
-          </li>
+        <li>
+                <Link href="/">
+                  <button
+                    className="text-gray-900 dark:text-white hover:underline"
+                    aria-current="page"
+                  >
+                    Home
+                  </button>
+                </Link>
+              </li>
+              <li>
+                <button className="text-gray-900 dark:text-white hover:underline">
+                  Team
+                </button>
+              </li>
+              <li>
+                <button className="text-gray-900 dark:text-white hover:underline">
+                  Features
+                </button>
+              </li>
+              <li>
+                <Link href="/admin">
+                  <button className="text-gray-900 dark:text-white hover:underline">
+                    Admin
+                  </button>
+                </Link>
+              </li>
         </ul>
       </div>
     </div>
   </nav>
 </>
-
-    )
+    
+  );
 }
+
+
+
