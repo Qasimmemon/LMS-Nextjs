@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -32,91 +33,205 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function StudentTable() {
-  const data = [
-    {
-      id: "m5gr84i9",
-      Name: "Ahmed",
-      F_name: "Khan",
-      Course: "Web Development",
-      email: "ahmed99@yahoo.com",
-      CNIC: "42401-5478332-5",
-      Contact_no: "1234567",
-    },
-    {
-      id: "3u1reuv4",
-      Name: "John",
-      F_name: "Doe",
-      Course: "App Development",
-      email: "john99@yahoo.com",
-      CNIC: "42401-5483665-5",
-      Contact_no: "7654323456",
-    },
-    {
-      id: "derv1ws0",
-      Name: "Marry",
-      F_name: "Anne",
-      Course: "Back-end Development",
-      email: "marry99@yahoo.com",
-      CNIC: "42401-3485662-5",
-      Contact_no: "4567321",
-    },
-    {
-      id: "5kma53ae",
-      Name: "Ali",
-      F_name: "Raza",
-      Course: "Python Programming",
-      email: "ali@yahoo.com",
-      CNIC: "42401-3278556-5",
-      Contact_no: "7654321",
-    },
-    {
-      id: "bhqecj4p",
-      Name: "Farhan",
-      F_name: "Iqbal",
-      Course: "Flutter",
-      email: "farhan993@yahoo.com",
-      CNIC: "42401-6789223-5",
-      Contact_no: "8903456",
-    },
-  ];
+const data = [
+  {
+    id: "1",
+    firstName: "John",
+    lastName: "Doe",
+    education: "BS Computer Science",
+    cnic: "12345-6789012-3",
+    email: "john.doe@example.com",
+    profilePicture: "profile.jpg",
+    address: "123 Main St",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "2",
+    firstName: "Jane",
+    lastName: "Smith",
+    education: "MSc Mathematics",
+    cnic: "23456-7890123-4",
+    email: "jane.smith@example.com",
+    profilePicture: "profile.jpg",
+    address: "456 Park Ave",
+    gender: "Female",
+    role: "student",
+  },
+  {
+    id: "m5gr84i9",
+    firstName: "Ahmed",
+    lastName: "Khan",
+    education: "Web Development",
+    email: "ahmed99@yahoo.com",
+    cnic: "42401-5478332-5",
+    address: "123 Main St",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i10",
+    firstName: "Sara",
+    lastName: "Ali",
+    education: "Graphic Design",
+    email: "sara_ali@gmail.com",
+    cnic: "42401-8472331-2",
+    address: "456 Elm St",
+    gender: "Female",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i11",
+    firstName: "Usman",
+    lastName: "Sheikh",
+    education: "Data Science",
+    email: "usman_sheikh@gmail.com",
+    cnic: "42401-6578333-6",
+    address: "789 Maple Ave",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i12",
+    firstName: "Zainab",
+    lastName: "Hussain",
+    education: "App Development",
+    email: "zainab_hussain@yahoo.com",
+    cnic: "42401-3278334-9",
+    address: "321 Oak St",
+    gender: "Female",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i13",
+    firstName: "Bilal",
+    lastName: "Malik",
+    education: "Cybersecurity",
+    email: "bilal_malik@hotmail.com",
+    cnic: "42401-1378335-7",
+    address: "654 Pine St",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i14",
+    firstName: "Ayesha",
+    lastName: "Kareem",
+    education: "Digital Marketing",
+    email: "ayesha_kareem@gmail.com",
+    cnic: "42401-2678336-1",
+    address: "987 Cedar Blvd",
+    gender: "Female",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i15",
+    firstName: "Farhan",
+    lastName: "Qureshi",
+    education: "Network Engineering",
+    email: "farhan_qureshi@yahoo.com",
+    cnic: "42401-1578337-3",
+    address: "159 Birch Rd",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i16",
+    firstName: "Mariam",
+    lastName: "Tariq",
+    education: "Machine Learning",
+    email: "mariam_tariq@hotmail.com",
+    cnic: "42401-2878338-4",
+    address: "753 Chestnut Ave",
+    gender: "Female",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i17",
+    firstName: "Hamza",
+    lastName: "Butt",
+    education: "Database Management",
+    email: "hamza_butt@gmail.com",
+    cnic: "42401-1478339-8",
+    address: "852 Spruce St",
+    gender: "Male",
+    role: "trainer",
+  },
+  {
+    id: "m5gr84i18",
+    firstName: "Nida",
+    lastName: "Ansari",
+    education: "Cloud Computing",
+    email: "nida_ansari@yahoo.com",
+    cnic: "42401-3378340-0",
+    address: "951 Willow Dr",
+    gender: "Female",
+    role: "trainer",
+  }
+  
+];
 
-  const columns = [
-    {
-      accessorKey: "Name",
-      header: "Name",
-      cell: ({ row }) => <div className="capitalize">{row.getValue("Name")}</div>,
-    },
-    {
-      accessorKey: "F_name",
-      header: "Father's Name",
-      cell: ({ row }) => <div className="capitalize">{row.getValue("F_name")}</div>,
-    },
-    {
-      accessorKey: "Course",
-      header: "Course",
-      cell: ({ row }) => <div className="capitalize">{row.getValue("Course")}</div>,
-    },
-    {
-      accessorKey: "email",
-      header: "Email",
-      cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-    },
-    {
-        accessorKey: "CNIC",
-        header: () => <div className="text-left  header-with-line">CNIC</div>,
-        cell: ({ row }) => <div className="text-left">{row.getValue("CNIC")}</div>,
-      },
-      {
-        accessorKey: "Contact_no",
-        header: () => <div className="text-right header-with-line ">Contact Number</div>,
-        cell: ({ row }) => <div className="text-right ">{row.getValue("Contact_no")}</div>,
-      },
-      
-    {
-      id: "actions",
-      header: "Actions",
-      cell: ({ row }) => (
+export const columns = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "firstName",
+    header: "First Name",
+  },
+  {
+    accessorKey: "lastName",
+    header: "Last Name",
+  },
+  {
+    accessorKey: "education",
+    header: "Education",
+  },
+  {
+    accessorKey: "cnic",
+    header: "CNIC",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "address",
+    header: "Address",
+  },
+  {
+    accessorKey: "gender",
+    header: "Gender",
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const user = row.original;
+      return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
@@ -127,22 +242,25 @@ export default function StudentTable() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(row.original.id)}
+              onClick={() => navigator.clipboard.writeText(user.id)}
             >
-              Copy ID
+              Copy User ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Details</DropdownMenuItem>
+            <DropdownMenuItem>See Details</DropdownMenuItem>
+            <DropdownMenuItem>Change Role</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      ),
+      );
     },
-  ];
+  },
+];
 
-  const [sorting, setSorting] = React.useState([]);
-  const [columnFilters, setColumnFilters] = React.useState([]);
-  const [columnVisibility, setColumnVisibility] = React.useState({});
-  const [rowSelection, setRowSelection] = React.useState({});
+export function UserTrainerTable() {
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -166,26 +284,14 @@ export default function StudentTable() {
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-      <Input
-  placeholder="Filter by name..."
-  value={table.getColumn("Name")?.getFilterValue() || ""}
-  onChange={(event) => {
-    const value = event.target.value;
-    table.getColumn("Name")?.setFilterValue(value);
-  }}
-  className="max-w-sm"
-/>
-
-<Input
-  placeholder="Filter emails..."
-  value={table.getColumn("email")?.getFilterValue() || ""}
-  onChange={(event) => {
-    const value = event.target.value;
-    table.getColumn("email")?.setFilterValue(value);
-  }}
-  className="max-w-sm"
-/>
-
+        <Input
+          placeholder="Filter by Name..."
+          value={table.getColumn("firstName")?.getFilterValue() ?? ""}
+          onChange={(event) =>
+            table.getColumn("firstName")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -218,56 +324,38 @@ export default function StudentTable() {
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columns.length} className="text-center">
                   No results.
                 </TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
       </div>
     </div>
   );
